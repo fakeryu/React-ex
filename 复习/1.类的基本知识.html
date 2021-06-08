@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        总结：
+        1.类中的构造器不是必须写的，要对实例进行一些初始化的操作，如添加指定属性时才写。
+        2.如果A类继承了B类，且 A类中写了构造器，那么A类构造器中的super是必须要调用的。
+        3.类中所定义的方法，都是放在了类的原型对象上，供实例去使用。
+        */
+
+        // 创建一个类
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            // 一般方法
+            speak() {
+                // 通过Person实例调用speak时，speak中的this就是Person实例
+                console.log(`im${this.name},age${this.age}`);
+            }
+        }
+        // 创建一个student继承Person
+        class Student extends Person {
+            constructor(name, age, grade) {
+                // 放最前super
+                super(name, age)
+                this.grade = grade;
+            }
+            // 重写父类方法
+            speak() {
+                console.log(`im${this.name},age${this.age},grade${this.grade}`);
+            }
+
+            study() {
+                console.log('good good study');
+            }
+        }
+
+        var s1 = new Student('小张', 15, '高一');
+
+        class Car {
+            constructor(name, price) {
+                this.name = name
+                this.price = price
+            }
+            // 类中可以直接写赋值语句,如下代码含义：给Car实例添加一个属性，名为a，值为1
+            a = 1  // 给实例添加属性
+            static b = 2 // 给类自身添加属性
+        }
+
+        const c1 = new Car('benzeC63');
+        console.log(c1);
+
+        // // 创建一个person实例
+        // var p1 = new Person('tom', 18)
+        // var p2 = new Person('jerry', 19)
+    </script>
+</body>
+
+</html>
